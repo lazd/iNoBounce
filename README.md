@@ -42,7 +42,6 @@ All you need is an element with `height` or `max-height`, `overflow: auto` and `
     <li>List Item 9</li>
     <li>List Item 10</li>
 </ul>
-
 ```
 
 See the `examples/` folder for more examples, including a full-screen list, a canvas drawing app, and a fully skinned iOS-style app.
@@ -54,7 +53,7 @@ Loading `inobounce.js` will define the `iNoBounce` namespace. If the loading env
 
 
 * **iNoBounce.enable()**  
-Enable iNoBounce. It's enable by default on platforms that support `-webkit-overflow-scrolling`, so you only need to call this method if you explicitly disable it or want to enable it on a platform that doesn't support `-webkit-overflow-scrolling`.
+Enable iNoBounce. It's enabled by default on platforms that support `-webkit-overflow-scrolling`, so you only need to call this method if you explicitly disable it or want to enable it on a platform that doesn't support `-webkit-overflow-scrolling`.
 
 * **iNoBounce.disable()**  
 Disable iNoBounce.
@@ -65,12 +64,12 @@ Returns a boolean indicating if iNoBounce is enabled.
 
 ## Will it break my app that uses touch events like other solutions?
 
-It shouldn't. iNoBounce includes an example of a canvas drawing app and has been used in conjunction with [Hammer.js]
+It shouldn't. iNoBounce includes an example of a canvas drawing app and has been used in conjunction with [Hammer.js] without affecting functionality.
 
 
 ## How does it work?
 
-iNoBounce detects if the browser supports `-webkit-overflow-scrolling` by checking for the property on a fresh CSSStyleDeclaration. If it does, iNoBounce will listen to `touchmove` and selectively `preventDefault()` on move events that don't occur on a child of an element with `-webkit-overflow-scrolling: touch` set. In addition, iNoBounce will `preventDefault()` on events where the user is attemping to scroll past the bounds of a scrollable element, preventing rubberbanding on the element itself (an unavoidable caveat).
+iNoBounce detects if the browser supports `-webkit-overflow-scrolling` by checking for the property on a fresh `CSSStyleDeclaration`. If it does, iNoBounce will listen to `touchmove` and selectively `preventDefault()` on move events that don't occur on a child of an element with `-webkit-overflow-scrolling: touch` set. In addition, iNoBounce will `preventDefault()` when the user is attemping to scroll past the bounds of a scrollable element, preventing rubberbanding on the element itself (an unavoidable caveat).
 
 
 ## Shoutouts
