@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<title>iNoBounce Example - Full</title>
+
+	<!-- Ensure correct presentation on iOS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<!-- iOCSS for styling -->
+	<link rel="stylesheet" href="http://lazd.github.io/iOCSS/css/io.css">
+
+	<!-- iNoBounce to prevent bouncing -->
+	<script src="inobounce.js"></script>
+
+	<script>
+		// Allow toggling of iNoBounce with the toggle button
+		window.addEventListener('load', function() {
+			var enabled = true;
+			var toggle = document.getElementById('iNoBounceToggle');
+			toggle.addEventListener('click', function() {
+				if (enabled) {
+					iNoBounce.disable();
+					toggle.classList.add('default');
+					toggle.innerHTML = 'Enable';
+				}
+				else {
+					iNoBounce.enable();
+					toggle.classList.remove('default');
+					toggle.innerHTML = 'Disable';
+				}
+				enabled = !enabled;
+			}, false);
+		}, false);
+	</script>
+
+	<style>
+		.gray {
+			color: gray;
+		}
+	</style>
+</head>
+
+<body class="iOCSS">
+
+	<header class="header">
+		<div>
+			<button id="iNoBounceToggle" class="button">Disable</button>
+		</div>
+
+		<h1>iNoBounce</h1>
+		
+		<div>
+			<a href="inobounce.min.js" download="inobounce.min.js" class="button forward default">Download</a>
+		</div>
+	</header>
+
+	<ul class="list scrollable">
+		<li>Try swiping this list on your iOS device -- the viewport won't bounce!</li>
+		<li>Click the "Disable" button and try again -- the viewport bounces.</li>
+		<li>See the links below for other examples of iNoBounce in action.</li>
+		<li><a href="basic.html">Basic Example</a></li>
+		<li><a href="list.html">List Example</a></li>
+		<li><a href="drawing.html">Touchscreen Drawing Example</a></li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+		<li class="gray">...</li>
+	</ul>
+
+</body>
+</html>
