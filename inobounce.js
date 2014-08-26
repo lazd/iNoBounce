@@ -74,8 +74,15 @@
 	};
 
 	// Enable by default if the browser supports -webkit-overflow-scrolling
-	var scrollSupport = window.getComputedStyle(document.createElement('div'))['-webkit-overflow-scrolling'];
-	if (typeof scrollSupport !== 'undefined') {
+	// Test this by setting the property with JavaScript on an element that exists in the DOM
+	// Then, see if the property is reflected in the computed style
+	var testDiv = document.createElement('div');
+	document.documentElement.appendChild(testDiv);
+	testDiv.style.WebkitOverflowScrolling = 'touch';
+	var scrollSupport = window.getComputedStyle(testDiv)['-webkit-overflow-scrolling'] === 'touch';
+	document.documentElement.removeChild(testDiv);
+
+	if (scrollSupport) {
 		enable();
 	}
 
