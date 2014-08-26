@@ -17,11 +17,11 @@
 			// Get some style properties
 			var style = window.getComputedStyle(el);
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
-			var overflow = style.getPropertyValue('overflow');
+			var overflowY = style.getPropertyValue('overflow-y');
 			var height = parseInt(style.getPropertyValue('height'), 10);
 
 			// Determine if the element should scroll
-			var isScrollable = scrolling === 'touch' && overflow === 'auto';
+			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
 			var canScroll = el.scrollHeight > el.offsetHeight;
 
 			if (isScrollable && canScroll) {
