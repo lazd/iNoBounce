@@ -86,6 +86,10 @@
 		isEnabled: isEnabled
 	};
 
+	if (typeof module !== 'undefined' && module.exports) {
+		// Node.js Support
+		module.exports = iNoBounce;
+	}
 	if (typeof global.define === 'function') {
 		// AMD Support
 		(function(define) {
