@@ -1,8 +1,9 @@
 {
   "name": "iNoBounce",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Stop your iOS webapp from bouncing around when scrolling",
   "main": "inobounce.js",
+  "author": "Larry Davis <lazdnet@gmail.com>",
   "directories": {
     "example": "examples"
   },
