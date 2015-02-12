@@ -1,5 +1,5 @@
 {
-  "name": "iNoBounce",
+  "name": "inobounce",
   "version": "0.1.0",
   "description": "Stop your iOS webapp from bouncing around when scrolling",
   "main": "inobounce.js",
