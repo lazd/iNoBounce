@@ -79,7 +79,7 @@
 	var testDiv = document.createElement('div');
 	document.documentElement.appendChild(testDiv);
 	testDiv.style.WebkitOverflowScrolling = 'touch';
-	var scrollSupport = window.getComputedStyle(testDiv)['-webkit-overflow-scrolling'] === 'touch';
+	var scrollSupport = 'getComputedStyle' in window && window.getComputedStyle(testDiv)['-webkit-overflow-scrolling'] === 'touch';
 	document.documentElement.removeChild(testDiv);
 
 	if (scrollSupport) {
