@@ -1,9 +1,10 @@
-/*! iNoBounce - v0.1.0
+/*! iNoBounce - v0.1.2
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
 (function(global) {
-	// Stores the Y position where the touch started
+	// Stores the X & Y position where the touch started
 	var startY = 0;
+	var startX = 0;
 
 	// Store enabled status
 	var enabled = false;
@@ -23,14 +24,16 @@
 			}
 
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
+
+			// Handle Y
 			var overflowY = style.getPropertyValue('overflow-y');
 			var height = parseInt(style.getPropertyValue('height'), 10);
 
 			// Determine if the element should scroll
-			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
-			var canScroll = el.scrollHeight > el.offsetHeight;
+			var isYScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
+			var canYScroll = el.scrollHeight > el.offsetHeight;
 
-			if (isScrollable && canScroll) {
+			if (isYScrollable && canYScroll) {
 				// Get the current Y position of the touch
 				var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
 
@@ -48,17 +51,43 @@
 				return;
 			}
 
+			// Handle X
+			var overflowX = style.getPropertyValue('overflow-x');
+			var width = parseInt(style.getPropertyValue('width'), 10);
+
+			// Determine if the element should scroll
+			var isXScrollable = scrolling === 'touch' && (overflowX === 'auto' || overflowX === 'scroll');
+			var canXScroll = el.scrollWidth > el.offsetWidth;
+
+			if (isXScrollable && canXScroll){
+				// Get the current X position of the touch
+				var curX = evt.touches ? evt.touches[0].screenX : evt.screenX;
+
+				// Determine if the user is trying to scroll past the left or right
+				// In this case, the window will bounce, so we have to prevent scrolling completely
+				var isAtLeft = (startX <= curX && el.scrollLeft === 0);
+				var isAtRight = (startX >= curX && el.scrollWidth - el.scrollLeft === width);
+
+				// Stop a bounce bug when at the left or right of the scrollable element
+				if (isAtLeft || isAtRight) {
+					evt.preventDefault();
+				}
+
+				// No need to continue up the DOM, we've done our job
+				return;
+			}
+
 			// Test the next parent
 			el = el.parentNode;
 		}
-
 		// Stop the bouncing -- no parents are scrollable
 		evt.preventDefault();
 	};
 
 	var handleTouchstart = function(evt) {
-		// Store the first Y position of the touch
+		// Store the first X & Y position of the touch
 		startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+		startX = evt.touches ? evt.touches[0].screenX : evt.screenX;
 	};
 
 	var enable = function() {
