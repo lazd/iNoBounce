@@ -11,6 +11,9 @@
 	var handleTouchmove = function(evt) {
 		// Get the element that was scrolled upon
 		var el = evt.target;
+        
+        // Self-removing handler 
+        window.removeEventListener('touchmove', handleTouchmove, false);
 
 		// Check all parent elements for scrollability
 		while (el !== document.body) {
@@ -59,19 +62,25 @@
 	var handleTouchstart = function(evt) {
 		// Store the first Y position of the touch
 		startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+		window.addEventListener('touchmove', handleTouchmove, false);
 	};
+
+	var handlerTouchend = function (evt) {
+		// Only in case just happen touchstart and touchend(touch doesn't move at all)
+        window.removeEventListener('touchmove', handleTouchmove, false);
+	}
 
 	var enable = function() {
 		// Listen to a couple key touch events
 		window.addEventListener('touchstart', handleTouchstart, false);
-		window.addEventListener('touchmove', handleTouchmove, false);
+		window.addEventListener('touchend', handlerTouchend, false);
 		enabled = true;
 	};
 
 	var disable = function() {
 		// Stop listening
 		window.removeEventListener('touchstart', handleTouchstart, false);
-		window.removeEventListener('touchmove', handleTouchmove, false);
+		window.removeEventListener('touchend', handleTouchmove, false);
 		enabled = false;
 	};
 
