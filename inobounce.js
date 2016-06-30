@@ -22,10 +22,10 @@
 				break;
 			}
 
-            //ignore range input element
-            if (el.nodeName === 'INPUT' && el.hasAttribute('type') && el.getAttribute('type') === 'range') {
-                return;
-            }
+			// Ignore range input element
+			if (el.nodeName === 'INPUT' && el.getAttribute('type') === 'range') {
+				return;
+			}
 
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
 			var overflowY = style.getPropertyValue('overflow-y');
