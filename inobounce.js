@@ -22,6 +22,11 @@
 				break;
 			}
 
+			// Ignore range input element
+			if (el.nodeName === 'INPUT' && el.getAttribute('type') === 'range') {
+				return;
+			}
+
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
 			var overflowY = style.getPropertyValue('overflow-y');
 			var height = parseInt(style.getPropertyValue('height'), 10);
