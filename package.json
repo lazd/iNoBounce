@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/lazd/iNoBounce/issues"
   },
-  "homepage": "https://github.com/lazd/iNoBounce"
+  "homepage": "https://github.com/lazd/iNoBounce",
+  "license": "BSD-2-Clause"
 }
