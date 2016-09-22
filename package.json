@@ -8,6 +8,7 @@
     "example": "examples"
   },
   "scripts": {
+    "prepublish": "./node_modules/.bin/uglifyjs inobounce.js -o inobounce.min.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
     "url": "https://github.com/lazd/iNoBounce/issues"
   },
   "homepage": "https://github.com/lazd/iNoBounce",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "uglify": "^0.1.5"
+  }
 }
