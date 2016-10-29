@@ -111,7 +111,7 @@
 	if (typeof global.define === 'function') {
 		// AMD Support
 		(function(define) {
-			define(function() { return iNoBounce; });
+			define('iNoBounce', [], function() { return iNoBounce; });
 		}(global.define));
 	}
 	else {
