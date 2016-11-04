@@ -28,11 +28,14 @@
 			}
 
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
-			var overflowY = style.getPropertyValue('overflow-y');
+            var overflowY = style.getPropertyValue('overflow-y');
+            var overflowX = style.getPropertyValue('overflow-y');
 			var height = parseInt(style.getPropertyValue('height'), 10);
+            var isY = overflowY === 'auto' || overflowY === 'scroll';
+            var isX = overflowX === 'auto' || overflowX === 'scroll';
 
 			// Determine if the element should scroll
-			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
+			var isScrollable = scrolling === 'touch' && (isY || isX);
 			var canScroll = el.scrollHeight > el.offsetHeight;
 
 			if (isScrollable && canScroll) {
@@ -46,7 +49,12 @@
 
 				// Stop a bounce bug when at the bottom or top of the scrollable element
 				if (isAtTop || isAtBottom) {
-					evt.preventDefault();
+                    if (isX && !isY) {
+                    	// horizontal was set and vertical was not.
+                        return;
+                    }else {
+                        evt.preventDefault();
+                    }
 				}
 
 				// No need to continue up the DOM, we've done our job
