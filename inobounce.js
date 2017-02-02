@@ -29,7 +29,7 @@
 
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
             var overflowY = style.getPropertyValue('overflow-y');
-            var overflowX = style.getPropertyValue('overflow-y');
+            var overflowX = style.getPropertyValue('overflow-x');
 			var height = parseInt(style.getPropertyValue('height'), 10);
             var isY = overflowY === 'auto' || overflowY === 'scroll';
             var isX = overflowX === 'auto' || overflowX === 'scroll';
