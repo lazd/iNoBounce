@@ -36,25 +36,13 @@
 			// Determine if the element should scroll
 			var isScrollable = isScrollableCheck(scrolling, overflowY, overflowX);
 			var canScroll = canScrollCheck(overflowY, el);
-			
-			console.log(isScrollable && canScroll)
 
 			if (isScrollable && canScroll) {
-				// Get the current Y position of the touch
-				var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
-
+				
 				if (overflowY === 'auto' || overflowY === 'scroll') {
-					// Determine if the user is trying to scroll past the top or bottom
-					// In this case, the window will bounce, so we have to prevent scrolling completely
-					var isAtTop = (startY <= curY && el.scrollTop === 0);
-					var isAtBottom = (startY >= curY && el.scrollHeight - el.scrollTop === height);
-
-					// Stop a bounce bug when at the bottom or top of the scrollable element
-					// Only need this for vertical scrolling
-					if ( isAtTop || isAtBottom) {
-						console.log('prevented')
-						evt.preventDefault();
-					}
+					horScroll(evt, height, el)
+				} else {
+					vertScroll(evt)
 				}
 
 				// No need to continue up the DOM, we've done our job
@@ -68,6 +56,38 @@
 		// Stop the bouncing -- no parents are scrollable
 		evt.preventDefault();
 	};
+
+	// ensure user is scrolling horizontally
+	var vertScroll = function(evt){
+		// Get the current Y position of the touch
+		var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+		// Get the current X position of the touch
+		var curX = evt.touches ? evt.touches[0].screenX : evt.screenX;
+
+		let Ydiff = Math.abs(startY-curY)
+		let Xdiff = Math.abs(startX-curX)
+		
+		// prevent if the user tried to scroll vertical in horizontal area
+		if (Ydiff > Xdiff) {
+			evt.preventDefault();
+		}
+	}
+
+	var horScroll = function(evt, height, el){
+		// Get the current Y position of the touch
+		var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+
+		// Determine if the user is trying to scroll past the top or bottom
+		// In this case, the window will bounce, so we have to prevent scrolling completely
+		var isAtTop = (startY <= curY && el.scrollTop === 0);
+		var isAtBottom = (startY >= curY && el.scrollHeight - el.scrollTop === height);
+
+		// Stop a bounce bug when at the bottom or top of the scrollable element
+		// Only need this for vertical scrolling
+		if ( isAtTop || isAtBottom) {
+			evt.preventDefault();
+		}
+	}
 
 	var canScrollCheck = function(overflowY, el){
 		if (overflowY === 'auto' || overflowY === 'scroll') {
