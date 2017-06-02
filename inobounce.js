@@ -64,8 +64,8 @@
 		// Get the current X position of the touch
 		var curX = evt.touches ? evt.touches[0].screenX : evt.screenX;
 
-		let Ydiff = Math.abs(startY-curY)
-		let Xdiff = Math.abs(startX-curX)
+		var Ydiff = Math.abs(startY-curY)
+		var Xdiff = Math.abs(startX-curX)
 		
 		// prevent if the user tried to scroll vertical in horizontal area
 		if (Ydiff > Xdiff) {
