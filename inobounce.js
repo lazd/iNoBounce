@@ -115,7 +115,7 @@
 		// Stop listening
 		window.removeEventListener('touchstart', handleTouchstart, false);
 		window.removeEventListener('touchmove', handleTouchmove, false);
-		window.addEventListener("touchend", handleTouchEnd, false);
+		window.removeEventListener("touchend", handleTouchEnd, false);
 		enabled = false;
 	};
 
