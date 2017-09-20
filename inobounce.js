@@ -13,7 +13,7 @@
 		var el = evt.target;
 
 		// Check all parent elements for scrollability
-		while (el !== document.body) {
+		while (el !== document.body && el !== document) {
 			// Get some style properties
 			var style = window.getComputedStyle(el);
 
