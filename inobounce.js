@@ -8,6 +8,12 @@
 	// Store enabled status
 	var enabled = false;
 
+	// Stores element on which touch-action started
+	var startElement = null;
+
+	// Stores information if a custom click event needs to be dispatched on touch-end
+	var needClick = false;
+
 	var handleTouchmove = function(evt) {
 		// Get the element that was scrolled upon
 		var el = evt.target;
@@ -47,6 +53,7 @@
 				// Stop a bounce bug when at the bottom or top of the scrollable element
 				if (isAtTop || isAtBottom) {
 					evt.preventDefault();
+					setClickReminder(evt);
 				}
 
 				// No need to continue up the DOM, we've done our job
@@ -59,17 +66,48 @@
 
 		// Stop the bouncing -- no parents are scrollable
 		evt.preventDefault();
+		setClickReminder(evt);
 	};
 
 	var handleTouchstart = function(evt) {
 		// Store the first Y position of the touch
 		startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+		needClick = false;
+		startElement = evt.target;
 	};
+
+	var setClickReminder = function(evt) {
+		var curX = evt.touches ? evt.touches[0].screenX : evt.screenX;
+		var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+		var clientRect = startElement.getBoundingClientRect();
+		needClick = (
+			clientRect.top < curY &&
+			clientRect.bottom > curY &&
+			clientRect.left < curX &&
+			clientRect.right > curX
+		);
+	}
+
+	var handleTouchEnd = function(evt) {
+		if (needClick && startElement != null && startElement === evt.target) {
+			var event = new MouseEvent(
+				"click", {
+					"view": window,
+					"bubbles": true,
+					"cancelable": true
+				}
+			);
+			startElement.dispatchEvent(event);
+		}
+		needClick = false;
+		startElement = null;
+	}
 
 	var enable = function() {
 		// Listen to a couple key touch events
 		window.addEventListener('touchstart', handleTouchstart, false);
 		window.addEventListener('touchmove', handleTouchmove, false);
+		window.addEventListener('touchend', handleTouchEnd, false);
 		enabled = true;
 	};
 
@@ -77,6 +115,7 @@
 		// Stop listening
 		window.removeEventListener('touchstart', handleTouchstart, false);
 		window.removeEventListener('touchmove', handleTouchmove, false);
+		window.removeEventListener("touchend", handleTouchEnd, false);
 		enabled = false;
 	};
 
