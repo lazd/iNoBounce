@@ -42,7 +42,7 @@
 				// Determine if the user is trying to scroll past the top or bottom
 				// In this case, the window will bounce, so we have to prevent scrolling completely
 				var isAtTop = (startY <= curY && el.scrollTop === 0);
-				var isAtBottom = (startY >= curY && el.scrollHeight - el.scrollTop === height);
+				var isAtBottom = (startY >= curY && el.scrollHeight - el.scrollTop == height);
 
 				// Stop a bounce bug when at the bottom or top of the scrollable element
 				if (isAtTop || isAtBottom) {
