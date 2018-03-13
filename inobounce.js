@@ -13,7 +13,8 @@
 		var el = evt.target;
 
 		// Allow zooming
-		if (evt.changedTouches.length > 1) {
+		var zoom = window.innerWidth / window.document.documentElement.clientWidth;
+		if (evt.touches.length > 1 || zoom !== 1) {
 			return;
 		}
 
