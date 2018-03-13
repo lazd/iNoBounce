@@ -57,6 +57,11 @@
 			el = el.parentNode;
 		}
 
+		// Allow zooming
+		if (evt.changedTouches.length > 1) {
+			return;
+		}
+
 		// Stop the bouncing -- no parents are scrollable
 		evt.preventDefault();
 	};
