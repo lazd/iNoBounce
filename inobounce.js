@@ -12,6 +12,11 @@
 		// Get the element that was scrolled upon
 		var el = evt.target;
 
+		// Allow zooming
+		if (evt.changedTouches.length > 1) {
+			return;
+		}
+
 		// Check all parent elements for scrollability
 		while (el !== document.body && el !== document) {
 			// Get some style properties
@@ -55,11 +60,6 @@
 
 			// Test the next parent
 			el = el.parentNode;
-		}
-
-		// Allow zooming
-		if (evt.changedTouches.length > 1) {
-			return;
 		}
 
 		// Stop the bouncing -- no parents are scrollable
