@@ -44,6 +44,8 @@
 				// Get the current Y position of the touch
 				var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
 
+				console.log(curY);
+
 				// Determine if the user is trying to scroll past the top or bottom
 				// In this case, the window will bounce, so we have to prevent scrolling completely
 				var isAtTop = (startY <= curY && el.scrollTop === 0);
