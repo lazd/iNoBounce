@@ -37,7 +37,12 @@
 
 			// Determine if the element should scroll
 			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
+
+			console.log('Is Scrollable: ' + isScrollable);
+
 			var canScroll = el.scrollHeight > el.offsetHeight;
+
+			console.log('can scroll: ' + canScroll);
 
 			if (isScrollable && canScroll) {
 				console.log('Yes it can scroll');
