@@ -9,6 +9,7 @@
 	var enabled = false;
 
 	var handleTouchmove = function(evt) {
+		console.log('handling touch move event.');
 		// Get the element that was scrolled upon
 		var el = evt.target;
 
@@ -18,12 +19,14 @@
 			var style = window.getComputedStyle(el);
 
 			if (!style) {
+				console.log('Cannot compute style for element: ' + el);
 				// If we've encountered an element we can't compute the style for, get out
 				break;
 			}
 
 			// Ignore range input element
 			if (el.nodeName === 'INPUT' && el.getAttribute('type') === 'range') {
+				console.log('Ignoring range');
 				return;
 			}
 
@@ -36,6 +39,7 @@
 			var canScroll = el.scrollHeight > el.offsetHeight;
 
 			if (isScrollable && canScroll) {
+				console.log('Yes it can scroll');
 				// Get the current Y position of the touch
 				var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
 
@@ -46,6 +50,7 @@
 
 				// Stop a bounce bug when at the bottom or top of the scrollable element
 				if (isAtTop || isAtBottom) {
+					console.log('stopping bounce bug');
 					evt.preventDefault();
 				}
 
@@ -62,12 +67,14 @@
 	};
 
 	var handleTouchstart = function(evt) {
+		console.log('Handle touch start event.');
 		// Store the first Y position of the touch
 		startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
 	};
 
 	var enable = function() {
 		// Listen to a couple key touch events
+		console.log('Enabling');
 		window.addEventListener('touchstart', handleTouchstart, false);
 		window.addEventListener('touchmove', handleTouchmove, false);
 		enabled = true;
@@ -75,12 +82,14 @@
 
 	var disable = function() {
 		// Stop listening
+		console.log('Disabling');
 		window.removeEventListener('touchstart', handleTouchstart, false);
 		window.removeEventListener('touchmove', handleTouchmove, false);
 		enabled = false;
 	};
 
 	var isEnabled = function() {
+		console.log('Is enabled: ' + enabled);
 		return enabled;
 	};
 
@@ -94,6 +103,7 @@
 	document.documentElement.removeChild(testDiv);
 
 	if (scrollSupport) {
+		console.log('getComputedStyle hasn\'t changed');
 		enable();
 	}
 
@@ -106,16 +116,19 @@
 
 	if (typeof module !== 'undefined' && module.exports) {
 		// Node.js Support
+		console.log('NODE.JS Support');
 		module.exports = iNoBounce;
 	}
 	if (typeof global.define === 'function') {
 		// AMD Support
+		console.log('AMD Support');
 		(function(define) {
 			define('iNoBounce', [], function() { return iNoBounce; });
 		}(global.define));
 	}
 	else {
 		// Browser support
+		console.log('Browser Support');
 		global.iNoBounce = iNoBounce;
 	}
 }(this));
