@@ -9,7 +9,7 @@
 	var enabled = false;
 
 	var handleTouchmove = function(evt) {
-		console.log('handling touch move event.');
+		// console.log('handling touch move event.');
 		// Get the element that was scrolled upon
 		var el = evt.target;
 
@@ -68,9 +68,10 @@
 	};
 
 	var handleTouchstart = function(evt) {
-		console.log('Handle touch start event.');
+		// console.log('Handle touch start event.');
 		// Store the first Y position of the touch
 		startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+		console.log('StartY: '+ startY);
 	};
 
 	var enable = function() {
