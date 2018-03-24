@@ -33,7 +33,10 @@
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
 			var overflowY = style.getPropertyValue('overflow-y');
 			var height = parseInt(style.getPropertyValue('height'), 10);
-			console.log(height);
+			// console.log(height);
+			consoloe.log("Element Scroll Height: " + el.scrollHeight);
+
+			consoloe.log("Element Offset Height: " + el.offsetHeight);
 
 			// Determine if the element should scroll
 			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
