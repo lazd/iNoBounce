@@ -2,6 +2,16 @@
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
 (function(global) {
+	var supportsPassiveOption = false;
+	try {
+		var opts = Object.defineProperty({}, 'passive', {
+			get: function() {
+				supportsPassiveOption = true;
+			}
+		});
+		window.addEventListener('test', null, opts);
+	} catch (e) {}
+	
 	// Stores the Y position where the touch started
 	var startY = 0;
 
@@ -74,8 +84,8 @@
 
 	var enable = function() {
 		// Listen to a couple key touch events
-		window.addEventListener('touchstart', handleTouchstart, false);
-		window.addEventListener('touchmove', handleTouchmove, false);
+		window.addEventListener('touchstart', handleTouchstart, supportsPassiveOption ? { passive: false } : false);
+		window.addEventListener('touchmove', handleTouchmove, supportsPassiveOption ? { passive: false } : false);
 		enabled = true;
 	};
 
