@@ -1,4 +1,4 @@
-/*! iNoBounce - v0.1.1
+/*! iNoBounce - v0.1.6
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
 (function(global) {
@@ -9,14 +9,14 @@
 	var enabled = false;
 
 	var supportsPassiveOption = false;
-	    try {
-	      var opts = Object.defineProperty({}, 'passive', {
-	        get: function() {
-	          supportsPassiveOption = true;
-	        }
-	      });
-	      window.addEventListener('test', null, opts);
-	    } catch (e) {}
+	try {
+		var opts = Object.defineProperty({}, 'passive', {
+			get: function() {
+				supportsPassiveOption = true;
+			}
+		});
+		window.addEventListener('test', null, opts);
+	} catch (e) {}
 
 	var handleTouchmove = function(evt) {
 		// Get the element that was scrolled upon
