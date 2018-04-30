@@ -1,7 +1,13 @@
-/*! iNoBounce - v0.1.0
+/*! iNoBounce - v0.1.6
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
 (function(global) {
+	// Stores the Y position where the touch started
+	var startY = 0;
+
+	// Store enabled status
+	var enabled = false;
+
 	var supportsPassiveOption = false;
 	try {
 		var opts = Object.defineProperty({}, 'passive', {
@@ -11,12 +17,6 @@
 		});
 		window.addEventListener('test', null, opts);
 	} catch (e) {}
-	
-	// Stores the Y position where the touch started
-	var startY = 0;
-
-	// Store enabled status
-	var enabled = false;
 
 	var handleTouchmove = function(evt) {
 		// Get the element that was scrolled upon
@@ -84,8 +84,8 @@
 
 	var enable = function() {
 		// Listen to a couple key touch events
-		window.addEventListener('touchstart', handleTouchstart, supportsPassiveOption ? { passive: false } : false);
-		window.addEventListener('touchmove', handleTouchmove, supportsPassiveOption ? { passive: false } : false);
+		window.addEventListener('touchstart', handleTouchstart, supportsPassiveOption ? { passive : false } : false);
+		window.addEventListener('touchmove', handleTouchmove, supportsPassiveOption ? { passive : false } : false);
 		enabled = true;
 	};
 
