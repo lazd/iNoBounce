@@ -1,4 +1,3 @@
-/* eslint-disable */ // REMOVEEEEE
 /*! iNoBounce - v0.1.6
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
@@ -46,8 +45,8 @@
 			}
 
 			var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
-      var overflowY = style.getPropertyValue('overflow-y');
-      var overflowX = style.getPropertyValue('overflow-x');
+			var overflowY = style.getPropertyValue('overflow-y');
+			var overflowX = style.getPropertyValue('overflow-x');
 			var height = parseInt(style.getPropertyValue('height'), 10);
 
 			// Determine if the element should scroll
@@ -58,7 +57,8 @@
 
 				if (overflowY === 'auto' || overflowY === 'scroll') {
 					horScroll(evt, height, el)
-				} else {
+				}
+				else {
 					vertScroll(evt)
 				}
 
