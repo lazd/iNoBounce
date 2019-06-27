@@ -8,7 +8,7 @@
     "example": "examples"
   },
   "scripts": {
-    "prepublish": "./node_modules/.bin/uglifyjs inobounce.js -o inobounce.min.js"
+    "prepare": "./node_modules/.bin/uglifyjs inobounce.js -o inobounce.min.js"
   },
   "repository": {
     "type": "git",
