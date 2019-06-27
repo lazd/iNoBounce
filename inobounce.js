@@ -1,4 +1,4 @@
-/*! iNoBounce - v0.1.6
+/*! iNoBounce - v0.2.0
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
 (function(global) {
