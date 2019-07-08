@@ -10,8 +10,23 @@ You've built a nice full-screen mobile webapp, complete with scrollable elements
 
 No dependencies, no configuration, just include iNoBounce.
 
+## download
+
+```sh
+npm i inobounce
+// or
+yarn add inobounce
+```
+
+## usage
+
 ```html
 <script src="inobounce.js"></script>
+```
+or
+```javascript
+// entry.js
+import 'inobounce'
 ```
 
 ## Example
