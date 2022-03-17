@@ -38,6 +38,12 @@
 				break;
 			}
 
+            // if the element is a horizontally scrollable element, ignore it
+            var overflowX = style.getPropertyValue('overflow-x');
+            if (overflowX === 'scroll') {
+              return;
+            }
+
 			// Ignore range input element
 			if (el.nodeName === 'INPUT' && el.getAttribute('type') === 'range') {
 				return;
@@ -48,7 +54,7 @@
 			var height = parseInt(style.getPropertyValue('height'), 10);
 
 			// Determine if the element should scroll
-			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll' || overflowX === 'auto' || overflowX === 'scroll');
+			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
 			var canScroll = el.scrollHeight > el.offsetHeight;
 
 			if (isScrollable && canScroll) {
