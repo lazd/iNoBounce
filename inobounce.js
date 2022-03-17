@@ -48,7 +48,7 @@
 			var height = parseInt(style.getPropertyValue('height'), 10);
 
 			// Determine if the element should scroll
-			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
+			var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll' || overflowX === 'auto' || overflowX === 'scroll');
 			var canScroll = el.scrollHeight > el.offsetHeight;
 
 			if (isScrollable && canScroll) {
