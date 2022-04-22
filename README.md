@@ -61,6 +61,8 @@ Disable iNoBounce.
 * **iNoBounce.isEnabled()**  
 Returns a boolean indicating if iNoBounce is enabled.
 
+* **iNoBounce.isScrollSupported**  
+A boolean value that indicates if the `-webkit-overflow-scrolling` css property is valid, effectively a browser detection flag.
 
 ## Will it break my app that uses touch events like other solutions?
 
