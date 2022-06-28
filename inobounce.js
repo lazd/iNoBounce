@@ -1,7 +1,7 @@
 /*! iNoBounce - v0.2.0
 * https://github.com/lazd/iNoBounce/
 * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
-(function(global) {
+(function (global) {
 	// Stores the Y position where the touch started
 	var startY = 0;
 
@@ -11,14 +11,14 @@
 	var supportsPassiveOption = false;
 	try {
 		var opts = Object.defineProperty({}, 'passive', {
-			get: function() {
+			get: function () {
 				supportsPassiveOption = true;
 			}
 		});
 		window.addEventListener('test', null, opts);
-	} catch (e) {}
+	} catch (e) { }
 
-	var handleTouchmove = function(evt) {
+	var handleTouchmove = function (evt) {
 		// Get the element that was scrolled upon
 		var el = evt.target;
 
@@ -36,6 +36,12 @@
 			if (!style) {
 				// If we've encountered an element we can't compute the style for, get out
 				break;
+			}
+
+			// if the element is a horizontally scrollable element, ignore it
+			var overflowX = style.getPropertyValue('overflow-x');
+			if (overflowX === 'scroll') {
+				return;
 			}
 
 			// Ignore range input element
@@ -77,26 +83,26 @@
 		evt.preventDefault();
 	};
 
-	var handleTouchstart = function(evt) {
+	var handleTouchstart = function (evt) {
 		// Store the first Y position of the touch
 		startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
 	};
 
-	var enable = function() {
+	var enable = function () {
 		// Listen to a couple key touch events
-		window.addEventListener('touchstart', handleTouchstart, supportsPassiveOption ? { passive : false } : false);
-		window.addEventListener('touchmove', handleTouchmove, supportsPassiveOption ? { passive : false } : false);
+		window.addEventListener('touchstart', handleTouchstart, supportsPassiveOption ? { passive: false } : false);
+		window.addEventListener('touchmove', handleTouchmove, supportsPassiveOption ? { passive: false } : false);
 		enabled = true;
 	};
 
-	var disable = function() {
+	var disable = function () {
 		// Stop listening
 		window.removeEventListener('touchstart', handleTouchstart, false);
 		window.removeEventListener('touchmove', handleTouchmove, false);
 		enabled = false;
 	};
 
-	var isEnabled = function() {
+	var isEnabled = function () {
 		return enabled;
 	};
 
@@ -127,8 +133,8 @@
 	}
 	if (typeof global.define === 'function') {
 		// AMD Support
-		(function(define) {
-			define('iNoBounce', [], function() { return iNoBounce; });
+		(function (define) {
+			define('iNoBounce', [], function () { return iNoBounce; });
 		}(global.define));
 	}
 	else {
