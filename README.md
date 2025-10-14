@@ -8,6 +8,18 @@ You've built a nice full-screen mobile webapp, complete with scrollable elements
 
 ## The solution
 
+Now that we have [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior), iNoBounce is no longer required.
+
+Simply do something like this:
+
+```css
+html, body {
+  overscroll-behavior: none;
+}
+```
+
+## The old solution
+
 No dependencies, no configuration, just include iNoBounce.
 
 ```html
