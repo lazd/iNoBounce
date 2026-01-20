@@ -38,6 +38,12 @@
 				break;
 			}
 
+            // if the element is a horizontally scrollable element, ignore it
+            var overflowX = style.getPropertyValue('overflow-x');
+            if (overflowX === 'scroll') {
+              return;
+            }
+
 			// Ignore range input element
 			if (el.nodeName === 'INPUT' && el.getAttribute('type') === 'range') {
 				return;
