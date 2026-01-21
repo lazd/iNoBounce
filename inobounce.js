@@ -24,7 +24,7 @@
 
 		// Allow zooming
 		var zoom = window.innerWidth / window.document.documentElement.clientWidth;
-		if (evt.touches.length > 1 || zoom !== 1) {
+		if (!evt.touches || evt.touches.length > 1 || zoom !== 1) {
 			return;
 		}
 
